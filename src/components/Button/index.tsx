@@ -1,28 +1,27 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacityProps } from 'react-native'
 
 import Button from './styles'
 
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   icon?: string
   title?: string
-  onPress(): void
   disabled?: boolean
 }
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   icon,
   title,
-  onPress,
-  disabled
+  disabled,
+  ...restProps
 }) => {
   return (
     <View pointerEvents={disabled ? 'none' : 'auto'}>
       <Button
-        onPress={onPress}
         activeOpacity={0.7}
         onlyIcon={!title && Boolean(icon)}
         disabled={disabled}
+        {...restProps}
       >
         {Boolean(icon) && <Button.Icon name={icon} size={24} />}
 

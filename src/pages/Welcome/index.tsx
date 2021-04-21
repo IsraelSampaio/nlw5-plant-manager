@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/core'
 
 import Welcome from './styles'
 
@@ -6,13 +7,9 @@ import wateringImg from '../../assets/watering.png'
 
 import Button from '../../components/Button'
 
-interface WelcomePageProps {
-  navigation: {
-    navigate(route: string): void
-  }
-}
+const WelcomePage: React.FC = () => {
+  const navigation = useNavigation()
 
-const WelcomePage: React.FC<WelcomePageProps> = ({ navigation }) => {
   function handleRedirectUserIdentification() {
     navigation.navigate('UserIdentification')
   }

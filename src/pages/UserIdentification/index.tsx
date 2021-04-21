@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react'
-import { Platform } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
+import { Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 
 import UserIdentification from './styles'
 
@@ -9,16 +10,9 @@ import Input from '../../components/Input'
 import Emoji1 from '../../assets/emoji-1.png'
 import Emoji2 from '../../assets/emoji-2.png'
 
-interface UserIdentificationPageProps {
-  navigation: {
-    navigate(route: string): void
-  }
-}
-
-const UserIdentificationPage: React.FC<UserIdentificationPageProps> = ({
-  navigation
-}) => {
+const UserIdentificationPage: React.FC = () => {
   const [username, setUsername] = useState('')
+  const navigation = useNavigation()
 
   function handleRedirectConfirmation() {
     navigation.navigate('Confirmation')
@@ -30,24 +24,26 @@ const UserIdentificationPage: React.FC<UserIdentificationPageProps> = ({
 
   return (
     <UserIdentification>
-      <UserIdentification.Form
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <UserIdentification.Emoji source={Emoji} />
-        <UserIdentification.Title>
-          Como podemos{'\n'} chamar você?
-        </UserIdentification.Title>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <UserIdentification.Form
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+          <UserIdentification.Emoji source={Emoji} />
+          <UserIdentification.Title>
+            Como podemos{'\n'} chamar você?
+          </UserIdentification.Title>
 
-        <Input onChangeText={setUsername} placeholder="Digite um nome" />
+          <Input onChangeText={setUsername} placeholder="Digite um nome" />
 
-        <UserIdentification.Footer>
-          <Button
-            onPress={handleRedirectConfirmation}
-            title="Confirmar"
-            disabled={!usernameIsFilled}
-          />
-        </UserIdentification.Footer>
-      </UserIdentification.Form>
+          <UserIdentification.Footer>
+            <Button
+              onPress={handleRedirectConfirmation}
+              title="Confirmar"
+              disabled={!usernameIsFilled}
+            />
+          </UserIdentification.Footer>
+        </UserIdentification.Form>
+      </TouchableWithoutFeedback>
     </UserIdentification>
   )
 }

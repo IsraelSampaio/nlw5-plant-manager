@@ -12,7 +12,7 @@ const HeaderStyled: Header = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  padding: 24px;
+  padding: 24px 0;
   margin-top: ${props => props.theme.statusBarHeight}px;
 `
 

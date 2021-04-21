@@ -1,12 +1,15 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/core'
 
 import Confirmation from './styles'
 
 import Button from '../../components/Button'
 
 const ConfirmationPage: React.FC = () => {
-  function handleRedirect() {
-    console.log('kk eae man')
+  const navigation = useNavigation()
+
+  function handleRedirectPlantSelect() {
+    navigation.navigate('PlantSelect')
   }
 
   return (
@@ -20,7 +23,7 @@ const ConfirmationPage: React.FC = () => {
       </Confirmation.Subtitle>
 
       <Confirmation.Footer>
-        <Button onPress={handleRedirect} title="Começar" />
+        <Button onPress={handleRedirectPlantSelect} title="Começar" />
       </Confirmation.Footer>
     </Confirmation>
   )

@@ -11,6 +11,7 @@ import { ThemeContext } from 'styled-components'
 import WelcomeScreen from '../pages/Welcome'
 import UserIdentificationScreen from '../pages/UserIdentification'
 import ConfirmationScreen from '../pages/Confirmation'
+import PlantSelectPage from '../pages/PlantSelect'
 
 const Stack = createStackNavigator()
 
@@ -30,11 +31,15 @@ const StackRoutes: React.FC = () => {
       }}
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
+
       <Stack.Screen
         name="UserIdentification"
         component={UserIdentificationScreen}
       />
+
       <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
+
+      <Stack.Screen name="PlantSelect" component={PlantSelectPage} />
     </Stack.Navigator>
   )
 }
